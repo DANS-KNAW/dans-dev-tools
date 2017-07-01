@@ -16,4 +16,10 @@
 #
 
 mvn clean install
+
+if [ $? -ne 0 ]; then
+  echo "Build failed. Aborting."
+  exit 1
+fi
+
 build-yum-repo.sh

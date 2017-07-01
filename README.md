@@ -11,6 +11,8 @@ SYNOPSIS
     build-only-rpm.sh
     build-yum-repo.sh
     build-all.sh
+    build-reprovision.sh
+    build-all-and-reprovision.sh
 
     # Run with maven
     run-reset-env.sh
