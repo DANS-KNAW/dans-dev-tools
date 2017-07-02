@@ -9,10 +9,9 @@ SYNOPSIS
 
     # Build and deploy cycle
     build-only-rpm.sh
-    build-yum-repo.sh
-    build-all.sh
-    build-reprovision.sh
-    build-all-and-reprovision.sh
+    build-only-yum-repo.sh
+    build-and-vagrant-provision.sh
+    build-and-yum-repo.sh
 
     # Run with maven
     run-reset-env.sh
@@ -35,16 +34,13 @@ often convenient to execute only part of the build cycle. The scripts listed bel
 to remember the exact invocations of Maven and ansible.
 
 * `build-only-rpm.sh` - does *not* recompile the code base, but instead only repackages the currently compiled
-   code in a new RPM package. 
-* `build-yum-repo.sh` - does *not* recompile or repackage the code but merely copies the RPM already present
-   in `target` to the VM's yum repository and updates the repository's metadata (or creates the yum repository,
-   if it did not exist yet).
-* `build-all.sh` - rebuilds and packages the code and also updates the yum repository. This assumes that the vagrant
-   VM is up.
-* `build-reprovision.sh` - only reprovisions the vagrant VM, so if there is un updated RPM in the yum repository it
-   should be installed. The also assumed the vagrant VM is up.
-* `build-all-and-reprovision.sh` - executes the whole build-and-provision cycle: it rebuilds the code, creates a new
-   RPM, updates the yum repository with this RPM and then reprovisions the vagrant VM, so that the RPM is installed.
+   code into a new RPM package. 
+* `build-only-yum-repo.sh` - updates the yum repository with the RPM already present in `target`. (Creates the repo if it
+   does not exist yet.) (**vagrant box must be up**)
+* `build-and-yum-repo.sh` - `mvn clean install`, then updates the yum repository with the newly built RPM (which contains
+   freshly compiled code). (**vagrant box must be up**)
+* `build-and-vagrant-provision.sh` - `mvn clean install` and then `vagrant provision`. Note that the provision steps *includes*
+   updating the yum repo, so this script is only useful if some other configuration changed as well. (**vagrant box must be up**)
 
 ### `run*` scripts
 These scripts run the program under development using the [exec-maven-plugin]. 
@@ -58,8 +54,8 @@ These scripts run the program under development using the [exec-maven-plugin].
   in your IDE.
 * `run-service.sh` - runs the program as a service. It expects to be able to do so by just running the command line application with
   the sub-command `run-service`. It starts the JVM as a debug server to which you can attach your debugger, but it does not suspend
-  execution. (This is not necessary for a service, as it will wait for requests anyway and not run to completion - like a command line
-  application.) This will use `home/cfg/logback-service.xml`, which should be configured to log to the console. You can then
+  execution. This is not necessary for a service, as it will wait for requests anyway and not run to completion - like a command line
+  application. This will use `home/cfg/logback-service.xml`, which should be configured to log to the console. You can then
   fire your requests from another terminal window with `curl` or maybe from a browser, depending on the type of service.
 * `run-logback-statuslistener` - The same as `run.sh` except that it will print logback's internal status. You will only need this
   when you are having trouble with your logback configuration in this debug environment, so probably hardy ever.

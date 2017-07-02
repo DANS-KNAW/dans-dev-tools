@@ -18,8 +18,8 @@
 mvn clean install
 
 if [ $? -ne 0 ]; then
-  echo "Build failed. Aborting."
+  echo "ERROR: maven build failed. Aborting."
   exit 1
 fi
 
-build-yum-repo.sh
+build-only-yum-repo.sh

@@ -15,4 +15,11 @@
 # limitations under the License.
 #
 
+mvn clean install
+
+if [ $? -ne 0 ]; then
+    echo "ERROR: maven build failed. Aborting."
+    exit 1
+fi
+
 vagrant provision
