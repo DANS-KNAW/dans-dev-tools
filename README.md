@@ -40,7 +40,7 @@ to remember the exact invocations of Maven and ansible.
 * `build-and-yum-repo.sh` - `mvn clean install`, then updates the yum repository with the newly built RPM (which contains
    freshly compiled code). (**vagrant box must be up**)
 * `build-and-vagrant-provision.sh` - `mvn clean install` and then `vagrant provision`. Note that the provision steps *includes*
-   updating the yum repo, so this script is only useful if some other configuration changed as well. (**vagrant box must be up**)
+   updating the yum repo, but also installs the new version of the module. (**vagrant box must be up**)
 
 ### `run*` scripts
 These scripts run the program under development using the [exec-maven-plugin]. 

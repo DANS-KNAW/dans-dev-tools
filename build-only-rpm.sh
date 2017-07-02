@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-mvn -Prpm rpm:rpm
+mvn initialize -Prpm rpm:rpm
