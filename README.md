@@ -23,7 +23,7 @@ SYNOPSIS
 DESCRIPTION
 -----------
 A set of simple wrappers for commonly used commands when developing a DANS module. There are two groups:
-one dealing with the building the module and deploying it on a virtual machine that was previously started
+one dealing with building the module and deploying it on a virtual machine that was previously started
 with `vagrant`, the other with running the program locally in a debug session.
 
 ### `build*` scripts
@@ -109,7 +109,16 @@ INSTALLATION AND CONFIGURATION
 Clone this git repository to your local machine and put it on your `PATH`. Make sure
 the scripts are executable.
 
-
-
-
+    cd ~/git/service
+    git clone -o blessed https://github.com/DANS-KNAW/dans-dev-tools.git
+    cd dans-dev-tools/
     
+    # when using Oh My Zsh
+    vi ~/.zshrc
+    # add the path to dans-dev-tools/ to PATH
+    # restart the commandline
+    
+    # when using Bash
+    vi ~/.bashrc
+    # add the path to dans-dev-tools/ to PATH
+    # restart the commandline
