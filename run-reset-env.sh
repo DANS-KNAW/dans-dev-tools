@@ -18,13 +18,14 @@
 APPHOME=home
 DATADIR=data
 INIT_DEBUG_ENV_SCRIPT=./debug-init-env.sh
+set -e
 
 rm -fr $APPHOME
 cp -r src/main/assembly/dist $APPHOME
 cp src/test/resources/debug-config/* $APPHOME/cfg/
 
 if [ -e $DATADIR ]; then
-    DATADIR_BACKUP=$DATADIR-`date  +"%Y-%m-%d@%H:%M:%S"`
+    DATADIR_BACKUP=$DATADIR-$(date  +"%Y-%m-%d@%H:%M:%S")
     echo -n "Backing up existing data directory to $DATADIR_BACKUP..."
     mv $DATADIR $DATADIR_BACKUP
     echo "OK"
