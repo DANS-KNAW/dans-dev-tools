@@ -58,7 +58,7 @@ These scripts run the program under development using the [exec-maven-plugin].
   application. This will use `home/cfg/logback-service.xml`, which should be configured to log to the console. You can then
   fire your requests from another terminal window with `curl` or maybe from a browser, depending on the type of service.
 * `run-logback-statuslistener` - The same as `run.sh` except that it will print logback's internal status. You will only need this
-  when you are having trouble with your logback configuration in this debug environment, so probably hardy ever.
+  when you are having trouble with your logback configuration in this debug environment, so probably hardly ever.
 
 [exec-maven-plugin]: http://www.mojohaus.org/exec-maven-plugin/index.html
 
