@@ -17,7 +17,7 @@
 
 PLAYBOOK=src/main/ansible/rebuild-repo.yml
 INVENTORY=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
-export ANSIBLE_CONFIG=`pwd`/src/main/ansible/ansible.cfg
+export ANSIBLE_CONFIG=$(pwd)/src/main/ansible/ansible.cfg
 
 CONTINUE=1
 
