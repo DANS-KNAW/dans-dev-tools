@@ -3,6 +3,18 @@ dans-dev-tools
 
 DANS Development Tools.
 
+TABLE OF CONTENTS
+-----------------
+
+* [SYNOPSIS](#synopsis)
+* [DESCRIPTION](#description)
+    + [`build*` scripts](#build-scripts)
+    + [`run*` scripts](#run-scripts)
+    + [Assumptions](#assumptions)
+* [ARGUMENTS](#arguments)
+* [EXAMPLES](#examples)
+* [INSTALLATION AND CONFIGURATION](#installation-and-configuration)
+
 
 SYNOPSIS
 --------
@@ -115,10 +127,13 @@ the scripts are executable.
     
     # when using Oh My Zsh
     vi ~/.zshrc
-    # add the path to dans-dev-tools/ to PATH
-    # restart the commandline
+    # Add the path to dans-dev-tools/ to PATH. You do this by adding a line like this:
+    # PATH=$PATH:/User/<your-user-name-here>/git/shared/dans-dev-tools
+    # Restart the commandline.
     
     # when using Bash
     vi ~/.bashrc
-    # add the path to dans-dev-tools/ to PATH
-    # restart the commandline
+    # Add the path to dans-dev-tools/ to PATH. You do this by adding a line like this:
+    # PATH=$PATH:/User/<your-user-name-here>/git/shared/dans-dev-tools
+    # Restart the commandline.
+
