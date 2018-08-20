@@ -15,4 +15,4 @@ MODULE=$(echo $BASENAME | cut -d. -f1)
 EXT=$(echo $BASENAME | cut -d. -f2)
 SPRINGFIELD_PACKAGE=springfield2
 
-mvn install:install-file -Dfile=$ARTIFACT -DartifactId=$MODULE -Dpackaging=$EXT -DgroupId=nl.knaw.dans.springfield2 -Dversion=$VERSION
+mvn install:install-file -Dfile=$ARTIFACT -DartifactId=$MODULE -Dpackaging=$EXT -DgroupId=$SPRINGFIELD_PACKAGE -Dversion=$VERSION
