@@ -17,5 +17,6 @@
 
 APPHOME=home
 
+MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n" \
 LOGBACK_CONFIG="$APPHOME/cfg/logback-service.xml" \
 QUIET="-q" run.sh run-service $@
