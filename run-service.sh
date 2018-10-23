@@ -18,4 +18,4 @@
 APPHOME=home
 
 LOGBACK_CONFIG="$APPHOME/cfg/logback-service.xml" \
-QUIET="-q" run.sh run-service $@
+run.sh run-service $@
