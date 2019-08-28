@@ -128,7 +128,7 @@ the scripts are executable.
     # when using Oh My Zsh
     vi ~/.zshrc
     # Add the path to dans-dev-tools/ to PATH. You do this by adding a line like this:
-    # export PATH=$PATH:/User/<your-user-name-here>/git/shared/dans-dev-tools
+    # export PATH=$PATH:/Users/<your-user-name-here>/git/service/dans-dev-tools
     # Restart the commandline.
     
     # when using Bash
