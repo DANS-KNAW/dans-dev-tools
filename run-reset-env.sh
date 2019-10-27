@@ -22,7 +22,7 @@ set -e
 
 rm -fr $APPHOME
 cp -r src/main/assembly/dist $APPHOME
-cp src/test/resources/debug-config/* $APPHOME/cfg/
+cp -r src/test/resources/debug-config/* $APPHOME/cfg/
 
 if [ -e $DATADIR ]; then
     DATADIR_BACKUP=$DATADIR-$(date  +"%Y-%m-%d@%H:%M:%S")
