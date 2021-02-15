@@ -17,8 +17,10 @@
 
 APPHOME=home
 DEBUG_PORT=${1:-8000}
+SUSPEND=${2:-n}
+shift
 shift
 
-MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,address=$DEBUG_PORT,suspend=n" \
+MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,address=$DEBUG_PORT,suspend=$SUSPEND" \
 LOGBACK_CONFIG="$APPHOME/cfg/logback-service.xml" \
 run.sh run-service $@
