@@ -4,10 +4,10 @@ ETCDIR=etc
 DATADIR=data
 INIT_DEBUG_ENV_SCRIPT=./debug-init-env.sh
 
+echo -n "(Re-)creating $ETCDIR..."
 rm -fr $ETCDIR
-mkdir $ETCDIR
-
-cp src/test/resources/debug-etc/config.yml $ETCDIR/
+cp -r src/test/resources/debug-etc $ETCDIR
+echo "OK"
 
 if [ -e $DATADIR ]; then
     DATADIR_BACKUP=$DATADIR-$(date  +"%Y-%m-%d@%H:%M:%S")
