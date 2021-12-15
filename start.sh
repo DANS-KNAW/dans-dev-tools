@@ -6,4 +6,4 @@ do
 done
 
 set -x
-mvn exec:java -Dexec.args="$ARGS"
+mvn exec:java -Ddans.default.config=etc/config.yml -Dexec.cleanupDaemonThreads=false -Dexec.args="$ARGS"
