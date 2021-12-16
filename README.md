@@ -103,5 +103,5 @@ Add the path to dans-dev-tools/ to PATH. You do this by adding a line like this:
 export PATH=$PATH:$HOME/git/shared/dans-dev-tools
 ```
 
-Restart the commandline.
+Restart your terminal.
     
