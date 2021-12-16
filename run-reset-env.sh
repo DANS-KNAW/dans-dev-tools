@@ -15,6 +15,11 @@
 # limitations under the License.
 #
 
+if [ -d etc ]; then
+  echo "ERROR: this project contains an 'etc' directory. It is probably a new style project. Use the start-*.sh scripts instead."
+  exit
+fi
+
 APPHOME=home
 DATADIR=data
 INIT_DEBUG_ENV_SCRIPT=./debug-init-env.sh

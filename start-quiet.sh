@@ -15,19 +15,4 @@
 # limitations under the License.
 #
 
-if [ -d home ]; then
-  echo "ERROR: this project contains a 'home' directory. It is probably a legacy project. Use the run-*.sh scripts instead."
-  exit
-fi
-
-for a in "$@"
-do
-  ARGS="$ARGS'$a' "
-done
-
-if [ -z $QUIET ]; then
-  QUIET=""
-  set -x
-fi
-
-mvn exec:java $QUIET -Ddans.default.config=etc/config.yml -Dexec.cleanupDaemonThreads=false -Dexec.args="$ARGS"
+QUIET="-q" start.sh $@
