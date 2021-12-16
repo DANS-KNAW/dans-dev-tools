@@ -25,16 +25,19 @@ run-logback-statuslistener.sh [ <arg>... ]
 
 DESCRIPTION
 -----------
-A set of scripts around the [exec-maven-plugin], that allow you run your DANS module locally from witin the Maven project. Each DANS module should contain two
+A set of scripts around the [exec-maven-plugin], that allow you run your DANS module locally from within the Maven project. Each DANS module should contain two
 directories immediately under the project root, that are ignored by git:
 
 * `data/` - to store temporary test data that you use when test-driving your module.
-* `etc/` - to store configuration files to use for you local test-driving sessions.
-* `home/cfg/` - to store configuration files to use for you local test-driving sessions (**LEGACY: will be phased out**.)
+* `etc/` - to store configuration files to use for you local test-driving sessions (**only new style projects**).
+* `home/cfg/` - to store configuration files to use for you local test-driving sessions (**LEGACY: will be phased out**).
 
-Note that there are two sets of scripts, `start*.sh` and `run*.sh`. They both have the same objective but expect slightly different project layout. They will
-fail in the other type of project, for example `start.sh`, when used in a legacy project, will fail with the message: "ERROR: this project contains a 'home'
-directory. It is probably a legacy project. Use the run-*.sh scripts instead." That is, if the project already contains the `home` directory, if it is a fresh
+Note that there are two sets of scripts, `start*.sh` and `run*.sh`. They both have the same objective but expect slightly different project layouts. They will
+fail in the other type of project, for example `start.sh`, when used in a legacy project, will fail with the message: 
+
+> ERROR: this project contains a 'home'  directory. It is probably a legacy project. Use the run-*.sh scripts instead.
+ 
+That is, if the project already contains the `home` directory, if it is a fresh
 clone that was not initialized with `run-reset-env.sh` the failure may give a more obscure message.
 
 ### `start*.sh` scripts
@@ -54,11 +57,8 @@ clone that was not initialized with `run-reset-env.sh` the failure may give a mo
 
 ### `run*.sh` scripts (LEGACY)
 
-These scripts run the program under development using the [exec-maven-plugin].
-
-* `run-reset-env.sh` - the program needs a home directory in which to locate its configuration files and possibly other resources and a data directory for its
-  input, output and logging. These are created as (git-ignored) directories in the project root. The application home directory is provisioned with the
-  configuration files found in `src/test/debug-config`.
+* `run-reset-env.sh` - this will create the `data/` and `home/` directories. If `data/` already exists, it is backed up as `data-<timestamp>` and a new `data/`
+  folder is created. The `home/cfg/` folder is filled with the configuration files found in `src/test/debug-cfg`.
 * `run.sh` - runs the program as a command line application.
 * `run-debug.sh` - runs the program, starting the JVM as a debug server and suspending it so that you may attach your debugger
   (in IntelliJ: menu: `Run -> Attach to Local Process...`). Do yourself a favour and use this instead of creating run configurations in your IDE.
@@ -72,6 +72,14 @@ These scripts run the program under development using the [exec-maven-plugin].
 
 [exec-maven-plugin]: http://www.mojohaus.org/exec-maven-plugin/index.html
 
+EXAMPLES
+--------
+
+```bash
+# Starting with default config.yml (in etc/config) 
+cd my-new-style-project
+start.sh my-subcommand --some-arg 1 --some-option data/some-trailing-file-arg.txt
+```
 
 INSTALLATION AND CONFIGURATION
 ------------------------------
