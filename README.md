@@ -13,7 +13,10 @@ start.sh [ <arg>... ]
 start-quiet.sh [ <arg>... ]
 start-debug.sh [ <arg>... ]
 start-service.sh 
+start-service-debug.sh
 start-hsqldb.sh 
+start-virtual-env.sh
+start-mkdocs.sh
 
 # Legacy projects
 run-reset-env.sh
@@ -33,12 +36,12 @@ directories immediately under the project root, that are ignored by git:
 * `home/cfg/` - to store configuration files to use for you local test-driving sessions (**LEGACY: will be phased out**).
 
 Note that there are two sets of scripts, `start*.sh` and `run*.sh`. They both have the same objective but expect slightly different project layouts. They will
-fail in the other type of project, for example `start.sh`, when used in a legacy project, will fail with the message: 
+fail in the other type of project, for example `start.sh`, when used in a legacy project, will fail with the message:
 
-> ERROR: this project contains a 'home'  directory. It is probably a legacy project. Use the run-*.sh scripts instead.
- 
-That is, if the project already contains the `home` directory, if it is a fresh
-clone that was not initialized with `run-reset-env.sh` the failure may give a more obscure message.
+> ERROR: this project contains a 'home' directory. It is probably a legacy project. Use the run-*.sh scripts instead.
+
+That is, if the project already contains the `home` directory, if it is a fresh clone that was not initialized with `run-reset-env.sh` the failure may give a
+more obscure message.
 
 ### `start*.sh` scripts
 
@@ -47,9 +50,22 @@ clone that was not initialized with `run-reset-env.sh` the failure may give a mo
 * `start.sh` - starts the program a command line application. The configuration file `etc/config.yml` is passed in to use as default configuration for  
   custom subcommands subclassing [DefaultConfigEnvironmentCommand] or [DefaultConfigConfiguredCommand].
 * `start-quiet.sh` - same as `start.sh`, but suppressed Maven output.
-* `start-debug.sh` - same as `start.sh` but starting the JVM as a debug server and suspending it so that you may attach your debugger
+* `start-debug.sh` - same as `start.sh` but starting the JVM as a debug server and suspending it so that you may attach your debugger.
   (in IntelliJ: menu: `Run -> Attach to Local Process...`). Do yourself a favour and use this instead of creating run configurations in your IDE.
-* `start-service.sh` - starts the program as a service (with a JVM configured as debug server, but not suspending execution.
+* `start-service.sh` - starts the program as a service with a JVM configured as debug server, but not suspending execution.
+* `start-service-debug.sh` starts the program as a service with a JVM configured as debug server and suspending it so that you may attach your debugger - useful
+  when you need to debug the start-up process of a service.
+* `start-virtual-env.sh` - starts a Python 3 virtual environment and installs dependencies so that you can locally test the GitHub pages for the project
+  with `start-mkdocs.sh`. **Note that you need to activate the environment in a separate step**.
+* `start-mkdocs.sh` - runs `mkdocs serve` using the exact version installed by `start-virtual-env.sh`.
+
+#### GitHub Pages
+
+Each project has its own GitHub Pages site. The new style projects use the well-known readthedocs theme. In order to ensure that the site renders as desired,
+you can run it locally. It is important to use the exact same version of `mkdocs` and other required Python packages as used by the GitHub Actions that generate
+the pages at GitHub. That is why you should use a virtual environment when doing so. (Actually, this seems to be a best practise for Python development in
+general.) The `start-virtual-env.sh` and `start-mkdocs.sh` scripts can be used as helpers. Unless you have `mkdocs` installed globally, the `start-mkdocs.sh`
+script is actually not really necessary; when the virtual environment is active, the `mkdocs` command installed in it will be on the `PATH`.
 
 [DefaultConfigEnvironmentCommand]: https://dans-knaw.github.io/dans-java-utils/javadocs/nl/knaw/dans/lib/util/DefaultConfigEnvironmentCommand.html
 
