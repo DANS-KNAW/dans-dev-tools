@@ -55,9 +55,9 @@ more obscure message.
 * `start-service.sh` - starts the program as a service with a JVM configured as debug server, but not suspending execution.
 * `start-service-debug.sh` starts the program as a service with a JVM configured as debug server and suspending it so that you may attach your debugger - useful
   when you need to debug the start-up process of a service.
-* `start-virtual-env.sh` - starts a Python 3 virtual environment and installs dependencies so that you can locally test the GitHub pages for the project
-  with `start-mkdocs.sh`. **Note that you need to activate the environment in a separate step**.
-* `start-mkdocs.sh` - runs `mkdocs serve` using the exact version installed by `start-virtual-env.sh`.
+* `start-virtual-env.sh` - starts a Python 3 virtual environment. with `start-mkdocs.sh`. **Note that you need to activate the environment in a separate step**.
+* `start-mkdocs.sh` - Installs dependencies so that you can locally test the GitHub pages for the project and then runs `mkdocs serve` using the exact version
+  installed by `start-virtual-env.sh`.
 
 #### GitHub Pages
 
