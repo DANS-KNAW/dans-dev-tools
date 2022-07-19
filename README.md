@@ -18,6 +18,9 @@ start-hsqldb.sh
 start-virtual-env.sh
 start-mkdocs.sh
 
+# Misc scripts
+rndtree.sh
+
 # Legacy projects
 run-reset-env.sh
 run.sh [ <arg>... ]
