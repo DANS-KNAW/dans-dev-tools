@@ -21,26 +21,30 @@ def create_random_name(minlen, maxlen, name_chars):
     return random_name
 
 
-def create_random_subdirs(dir, num, name_chars, minlen, maxlen, levels):
-    for i in range(num):
-        random_dir = '{}/{}'.format(dir, create_random_name(5, 10, name_chars))
-        os.mkdir(random_dir)
-        if levels > 0:
-            create_random_subdirs(random_dir, num, name_chars, minlen, maxlen, levels - 1)
+def random_name_creator(name_chars, minlen, maxlen):
+    return lambda: create_random_name(minlen, maxlen, name_chars)
 
 
-def create_random_files(dir, num, name_chars, minlen, maxlen, minbytes, maxbytes, level):
+def create_random_subdirs(dir, num, name_creator, levels):
+    if levels > 0:
+        for i in range(num):
+            random_dir = '{}/{}'.format(dir, name_creator())
+            os.mkdir(random_dir)
+            create_random_subdirs(random_dir, num, name_creator, levels - 1)
+
+
+def create_random_files(dir, num, name_creator, minbytes, maxbytes, level):
     if level == 0:
         for i in range(num):
-            random_file = '{}/{}.bin'.format(dir, create_random_name(minlen, maxlen, name_chars))
+            random_file = '{}/{}.bin'.format(dir, name_creator())
             create_random_file(random_file, minbytes, maxbytes)
     else:
         for f in os.listdir(dir):
-            create_random_files('{}/{}'.format(dir, f), num, name_chars, minlen, maxlen, minbytes, maxbytes, level - 1)
+            create_random_files('{}/{}'.format(dir, f), num, name_creator, minbytes, maxbytes, level - 1)
 
 
 def main():
-    parser = argparse.ArgumentParser(add_help=True)
+    parser = argparse.ArgumentParser(add_help=True, allow_abbrev=False)
     parser.add_argument('-o', '--outdir',
                         dest='outdir',
                         help='the directory in which to create random files')
@@ -71,6 +75,7 @@ def main():
                         help='number of levels below outdir')
     parser.add_argument('--min-dirname-length',
                         dest='min_dirname_length',
+                        type=int,
                         default=10,
                         help='minimum length of directory names')
     parser.add_argument('--max-dirname-length',
@@ -96,8 +101,16 @@ def main():
         shutil.rmtree(args.outdir)
 
     os.mkdir(args.outdir)
-    create_random_subdirs(args.outdir, args.num_subdirs, name_chars, args.min_dirname_length, args.max_dirname_length, args.num_levels)
-    create_random_files(args.outdir, args.files_per_dir, name_chars, args.min_filename_length, args.max_filename_length, args.min_bytes_per_file, args.max_bytes_per_file, args.num_levels)
+    create_random_subdirs(dir=args.outdir,
+                          num=args.num_subdirs,
+                          name_creator=random_name_creator(name_chars, args.min_dirname_length, args.max_dirname_length),
+                          levels=args.num_levels)
+    create_random_files(dir=args.outdir,
+                        num=args.files_per_dir,
+                        name_creator=random_name_creator(name_chars, args.min_filename_length, args.max_filename_length),
+                        minbytes=args.min_bytes_per_file,
+                        maxbytes=args.max_bytes_per_file,
+                        level=args.num_levels)
 
 
 if __name__ == '__main__':
