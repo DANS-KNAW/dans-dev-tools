@@ -13,7 +13,7 @@ echo "Installing dependencies for doc site..."
 pip3 install -r .github/workflows/mkdocs/requirements.txt
 echo "...OK"
 
-./venv/bin/mkdocs serve
+mkdocs serve
 
 
 
