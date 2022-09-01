@@ -6,7 +6,7 @@ if [ -z "$VIRTUAL_ENV" ]; then
 fi
 
 echo -n "Upgrading pip3..."
-./venv/bin/python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pip
 echo "OK"
 
 echo "Installing dependencies for doc site..."
