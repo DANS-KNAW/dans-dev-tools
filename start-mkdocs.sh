@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+PORT=${1:-8080}
+
 if [ -z "$VIRTUAL_ENV" ]; then
   echo "First start the virtual environment with start-virtual-env.sh and then activate it"
   exit 1
@@ -13,7 +15,4 @@ echo "Installing dependencies for doc site..."
 pip3 install -r .github/workflows/mkdocs/requirements.txt
 echo "...OK"
 
-mkdocs serve
-
-
-
+mkdocs serve -a localhost:$PORT
