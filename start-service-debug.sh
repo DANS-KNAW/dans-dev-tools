@@ -15,6 +15,16 @@
 # limitations under the License.
 #
 
+print_usage() {
+  echo "start-service-debug.sh [--suspend]"
+  echo "Start a DANS module as a micro-service."
+  echo
+  echo "--suspend suspend execution at the start of the program"
+  exit
+}
+
+[[ $1 == "--help" ]] && print_usage
+[[ $1 == --suspend ]]  && SUSPEND=y || SUSPEND=n
 set -x
-MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=y" \
+MAVEN_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=$SUSPEND" \
 start.sh server etc/config.yml
