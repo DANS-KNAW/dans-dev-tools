@@ -15,7 +15,7 @@ start-debug.sh [ <arg>... ]
 start-service.sh 
 start-service-debug.sh
 start-hsqldb.sh 
-start-virtual-env.sh
+start-virtual-env-mkdocs.sh
 start-mkdocs.sh
 
 # Misc scripts
