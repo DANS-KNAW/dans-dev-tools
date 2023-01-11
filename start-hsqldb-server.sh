@@ -17,4 +17,4 @@
 
 mvn dependency:copy-dependencies -DincludeArtifactIds=hsqldb
 cp target/dependency/hsqldb*.jar data/
-java -cp data/hsqldb*.jar org.hsqldb.Server --props etc/db.properties
+java -cp data/hsqldb*.jar org.hsqldb.server.Server --props etc/db.properties
