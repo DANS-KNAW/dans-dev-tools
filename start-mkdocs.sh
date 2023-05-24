@@ -3,8 +3,9 @@
 PORT=${1:-8080}
 
 if [ -z "$VIRTUAL_ENV" ]; then
-  echo "First start the virtual environment with start-virtual-env.sh and then activate it"
-  exit 1
+  echo "Virtual environment for mkdocs not active. Activating..."
+  start-virtual-env-mkdocs.sh
+  source .venv-mkdocs/bin/activate
 fi
 
 echo -n "Upgrading pip3..."
