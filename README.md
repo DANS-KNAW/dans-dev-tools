@@ -61,8 +61,7 @@ more obscure message.
 * `start-virtual-env-mkdocs.sh` - starts a Python 3 virtual environment in `.venv-mkdocs`. **This script is automatically called by `start-mkdocs.sh`, and the
   virtual environment will also be automatically started.**
 * `start-mkdocs.sh` - Installs dependencies (from `.github/workflows/mkdocs/requirements.txt`) so that you can locally test the GitHub pages for the project and
-  then runs `mkdocs serve`. **This script is automatically called by `start-virtual-env-mkdocs.sh`, and the virtual environment will also be automatically
-  started if it is not already active.**
+  then runs `mkdocs serve`. **This script automatically calls `start-virtual-env-mkdocs.sh`, and starts the virtual environment if it is not already active.**
 
 #### GitHub Pages
 
